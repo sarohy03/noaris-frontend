@@ -6,10 +6,13 @@ export default {
   ],
   theme: {
     extend: {
-      colors:{
-        customBg:'#0E1117',
-      }
+      colors: {
+        customBg: '#0E1117',
+      },
     },
   },
   plugins: [],
-}
+  safelist: [
+    "no-scrollbar",
+  ],
+};
