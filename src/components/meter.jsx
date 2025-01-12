@@ -1,53 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
-const meter = ({ progress, size, borderColor, progressColor }) => {
-  const radius = size / 2 - 10;
-  const circumference = 2 * Math.PI * radius;
-  const strokeDashoffset = circumference - (progress / 100) * circumference;
+const App = ({ progress }) => {
+  const [animatedProgress, setAnimatedProgress] = useState(progress);
+
+  useEffect(() => {
+    // Animate progress value
+    const timeout = setTimeout(() => {
+      setAnimatedProgress(progress);
+    }, 50); // Slight delay to ensure smooth animation
+
+    return () => clearTimeout(timeout);
+  }, [progress]);
 
   return (
-    <div
-      className="flex items-center justify-center relative"
-      style={{ width: size, height: size }}
-    >
-      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
-        <circle
-          cx={size / 2}
-          cy={size / 2}
-          r={radius}
-          fill="red"
-          stroke="#0E1117"
-          strokeWidth="15"
-          transform="rotate(-90, 100, 100)"
-          // borderColor="red"
-        
-          opacity={0.5}
-        //   className="border-4 border-white"
-        />
-        <circle
-          cx={size / 2}
-          cy={size / 2}
-          r={radius}
-          fill="transparent"
-          stroke={progressColor}
-          strokeWidth="20"
-          strokeDasharray={circumference}
-          strokeDashoffset={strokeDashoffset}
-          strokeLinecap="round"
-          transform="rotate(-90, 100, 100)"
-        />
-      </svg>
-      <div
-        className="absolute text-black font-semibold text-center"
-        style={{
-          fontSize: `${size / 5}px`,
-          width: `${size / 2.5}px`,
-        }}
-      >
-        {progress}%
-      </div>
+    <div style={{ width: 200, height: 200 }}>
+      <CircularProgressbar
+        value={animatedProgress}
+        text={`${animatedProgress}%`}
+        strokeWidth={10}
+        styles={buildStyles({
+          pathColor: "#34436C",
+          trailColor: "#1E1E1E",
+          textColor: "#fff",
+          pathTransition: "stroke-dashoffset 0.5s ease 0s", // Smooth transition
+          strokeLinecap: "round",
+        })}
+      />
     </div>
   );
 };
 
-export default meter;
+export default App;

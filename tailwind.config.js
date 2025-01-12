@@ -8,6 +8,9 @@ export default {
     extend: {
       colors: {
         customBg: '#0E1117',
+        gradientStart: "#26151B",
+        gradientEnd: "#1C2130",
+
       },
     },
   },

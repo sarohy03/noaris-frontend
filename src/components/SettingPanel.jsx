@@ -190,10 +190,10 @@ const SettingsPanel = ({
                       console.log(e.target.value);
                       setSellingPressureSource(e.target.value);
                     }}
-                    className="w-full bg-gray-800 text-gray-300 p-2 text-sm rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full bg-[#16171D] text-gray-300 p-4 text-sm rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
                     <option value="Circulation">Circulation</option>
-                    <option value="Liquidity">Liquidity</option>
+                    <option value="Liquidity">Unlocks</option>
                   </select>
                   <p className="text-sm text-gray-400 mt-2">
                     Set the source of the selling pressure.
