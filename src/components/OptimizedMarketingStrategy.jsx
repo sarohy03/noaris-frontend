@@ -1,4 +1,5 @@
 import React from "react";
+import logo from '../assets/logo.png';
 
 const OptimizedMarketingStrategy = () => {
   return (
@@ -25,7 +26,7 @@ const OptimizedMarketingStrategy = () => {
           {/* Logo Section */}
           <div className="">
             <img
-              src="src/assets/logo.png"
+              src={logo}
               alt="Naoris Protocol Logo"
               className="w-[100%] h-40"
             />

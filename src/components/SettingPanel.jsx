@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import logo from "../assets/blacktokenomics.png";
 
 const SettingsPanel = ({
   isOpen,
@@ -67,7 +68,7 @@ const SettingsPanel = ({
         <div className="flex flex-col justify-between">
           <div className="mt-[16px] pr-[3em] ml-5">
             <img
-              src="src/assets/blacktokenomics.png"
+              src={logo}
               alt="logo"
               className="mb-4"
             />
