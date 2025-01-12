@@ -16,6 +16,7 @@ const App = ({ progress }) => {
 
   return (
     <div style={{ width: 200, height: 200 }}>
+      
       <CircularProgressbar
         value={animatedProgress}
         text={`${animatedProgress}%`}

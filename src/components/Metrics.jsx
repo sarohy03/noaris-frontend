@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Meter from "./meter";
-
-const Metrics = ({ supplyShock, className, data, name }) => {
+import LineGraph from "./lineGraph";
+import Tooltip from "./tollTip";
+const Metrics = ({
+  supplyShock,
+  className,
+  data,
+  name,
+  line,
+  selected,
+  cu,
+  pu,
+  ci,
+  pi,
+}) => {
   // Helper function to format numbers with commas
   const formatNumber = (number) => {
     if (typeof number === "number") {
@@ -10,48 +22,125 @@ const Metrics = ({ supplyShock, className, data, name }) => {
     return number;
   };
 
+  const calculatePercentageDifference = (current, previous) => {
+    // Prevent division by zero
+    // console.log("Current:", current, "Previous:", previous);
+    if (previous === 0) return current > 0 ? 100 : -100;
+
+    // Calculate percentage difference
+    const average = (current + previous) / 2;
+    const difference = ((current - previous) / average) * 100;
+
+    // Round to 2 decimal places for better display
+    return parseFloat(difference.toFixed(2));
+  };
+
+  // State for storing calculated percentage differences
+  const [percentageDifferences, setPercentageDifferences] = useState({
+    totalUnlockDiff: 0,
+    investorUnlockDiff: 0,
+  });
+
+  // Update percentage differences whenever `cu`, `pu`, `ci`, or `pi` change
+  useEffect(() => {
+    // console.log("Calculating percentage differences...", cu, pu, ci, pi);
+
+    const totalUnlockDiff = calculatePercentageDifference(cu, pu);
+    const investorUnlockDiff = calculatePercentageDifference(ci, pi);
+    // console.log("Total Unlock Difference:", totalUnlockDiff);
+    setPercentageDifferences({ totalUnlockDiff, investorUnlockDiff });
+  
+
+  }, [cu, pu, ci, pi]);
+  
+
   return (
     <div className={`border-2 flex flex-col p-8  rounded-3xl ${className}`}>
       {/* Container */}
       <div className="flex  items-center">
-        <h1 className="text-2xl font-bold mb-4">{name}</h1>
+        <h1 className="text-2xl font-bold mb-4">{
+        name}</h1>
       </div>
       <div className="flex flex-col space-y-6">
         {/* Top Section */}
-        <div className="flex space-x-1 flex-wrap ">
+        <div className="flex space-x-1 gap-3 flex-wrap ">
           {/* Supply Shock Card */}
           <div className="p-10 mb-3 flex-1 bg-[#0E1117] p-6 rounded-xl flex flex-col items-center">
-            <h3 className="text-lg font-semibold text-white mb-4">
+            <div className="flex justify-between"> 
+
+            <h3 className="text-lg font-semibold text-white mb-4 mr-3">
               Supply Shock (%)
             </h3>
+            <Tooltip 
+              text="Indicates the percentage of newly released tokens relative to the circulating supply. A higher Supply Shock percentage suggests a larger influx of tokens into the market, which can increase price volatility."
+            />
+            </div>
             <Meter progress={supplyShock} />
           </div>
 
           {/* Right Side: Two Stacked Cards */}
           <div className="flex flex-col gap-6 flex-1 ">
-          {/* Total Unlock Value Card */}
+            {/* Total Unlock Value Card */}
             <div className="bg-[#0E1117] p-6 rounded-xl flex flex-col justify-between">
+              <div className="flex justify-between">
+
+
               <h4 className="text-sm font-medium text-white mb-2">
                 Total Unlock Value
               </h4>
+              <Tooltip text={"Represents the overall dollar value of tokens scheduled to unlock this month."}/>
+              </div>
+              <div>
+                <LineGraph
+                  processedEmissionsData={line}
+                  selected={selected}
+                  name={`TotalUnlockValue${name}`}
+                />
+              </div>
               <div className="flex justify-between items-center">
                 <p className="text-xl font-bold text-white">
-                  ${formatNumber(data.unlock_value_sp)}
+                  ${formatNumber(cu)}
                 </p>
-                <p className="text-green-500 text-sm font-medium mt-1">+34%</p>
+                <p
+                  className={`text-sm font-medium mt-1 ${
+                    percentageDifferences.totalUnlockDiff >= 0
+                      ? "text-green-500"
+                      : "text-red-500"
+                  }`}
+                >
+                  {`${percentageDifferences.totalUnlockDiff}%`}
+                </p>
               </div>
             </div>
 
             {/* Unlock Value for Investors Card */}
             <div className="bg-[#0E1117] p-6 rounded-xl flex flex-col justify-between">
+              <div className="flex justify-between " >
               <h4 className="text-sm font-medium text-white mb-2">
                 Unlock Value for Investors
               </h4>
+              <Tooltip text={"Specifically tracks the portion of the total unlocked tokens allocated to investors."} />
+              </div>
+              <div>
+                <LineGraph
+                  processedEmissionsData={line}
+                  selected={selected}
+                  name={`UnlockValueforInvestors${name}`}
+                />
+              </div>
               <div className="flex justify-between items-center">
                 <p className="text-xl font-bold text-white">
                   ${formatNumber(data.Value_for_Investors_SP)}
                 </p>
-                <p className="text-red-500 text-sm font-medium mt-1">-23%</p>
+                <p
+                  className={`text-sm font-medium mt-1 ${
+                    percentageDifferences.investorUnlockDiff >= 0
+                      ? "text-green-500"
+                      : "text-red-500"
+                  }`}
+                >
+                  {`${percentageDifferences.investorUnlockDiff}%`}
+                </p>
               </div>
             </div>
           </div>
@@ -62,6 +151,7 @@ const Metrics = ({ supplyShock, className, data, name }) => {
           <h4 className="text-sm font-medium text-white mb-2">
             Worst Case Scenario
           </h4>
+
           <div className="border-2 w-full border-[#26282E] mb-3"></div>
           <div className="flex justify-between items-center flex-row">
             <p className="text-xl font-bold text-white">
@@ -72,8 +162,17 @@ const Metrics = ({ supplyShock, className, data, name }) => {
             </p>
           </div>
           <div className="flex flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm mb-4">Total Maximum Unlock</p>
-            <p className="text-gray-400 text-sm mb-4">Maximum for Investors</p>
+            <div className="flex justify-between">
+
+            <p className="text-gray-400 text-sm mb-4 mr-2 pt-1">Total Maximum Unlock</p>
+            <Tooltip text={"The absolute highest dollar value of tokens that could be sold this month (e.g., if all unlocked tokens this month are sold.)"}/>
+            </div>
+            <div className="flex justify-between">
+
+            <Tooltip text={"The absolute highest dollar value of tokens that investors can sell this month."}/>
+            <p className="text-gray-400 text-sm mb-4 ml-2 pt-1">Maximum for Investors</p>
+
+            </div>
           </div>
         </div>
       </div>

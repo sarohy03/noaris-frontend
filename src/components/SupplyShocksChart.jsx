@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Plotly from "plotly.js-dist";
+import Tooltip from "./tollTip"; // Import the Tooltip component
 
 const SupplyShockChart = ({ className, selected, processedEmissionsData }) => {
   const [dimensions, setDimensions] = useState({
@@ -33,6 +34,7 @@ const SupplyShockChart = ({ className, selected, processedEmissionsData }) => {
   };
 
   const supplyShockData = calculateSupplyShock(processedEmissionsData);
+
   useEffect(() => {
     const months = supplyShockData.map((d) => d.Month);
     const supplyShocks = supplyShockData.map((d) => d.SupplyShock);
@@ -71,8 +73,7 @@ const SupplyShockChart = ({ className, selected, processedEmissionsData }) => {
             },
             bordercolor: "transparent",
             borderwidth: 0,
-          }
-          
+          },
         },
         hovertemplate:
           "<b>Month %{x}</b><br>Supply Shock: %{y:.2f}<extra></extra>",
@@ -81,7 +82,7 @@ const SupplyShockChart = ({ className, selected, processedEmissionsData }) => {
 
     const layout = {
       title: {
-        text: "Monthly Supply Shocks",
+        text: "",
         font: {
           color: "white", // Text color
           size: 30, // Font size in pixels
@@ -110,26 +111,39 @@ const SupplyShockChart = ({ className, selected, processedEmissionsData }) => {
       },
       height: dimensions.height,
     };
-    
 
     Plotly.newPlot("supplyShockChart", data, layout, {
       responsive: true,
       displayModeBar: false,
     });
-  }, [supplyShockData, dimensions, open]);
+  }, [supplyShockData, dimensions]);
 
   return (
     <div
-      id="supplyShockChart"
-      className="bg-gray-800 rounded shadow-lg"
+      className="bg-[#181D2D] rounded shadow-lg p-4"
       style={{
         width: "100%",
-        height: dimensions.height, // Dynamic height
         borderRadius: "1.5rem", // Add rounded edges
         overflow: "hidden", // Ensure content doesn't overflow the rounded container
-        // backgroundColor: "red", // Change to your desired color
       }}
-    ></div>
+    >
+      <div className="flex items-center pt-5 pr-5">
+      <h1 className="text-2xl font-bold mr-3">
+          Monthly Supply Shocks
+        </h1>
+        <Tooltip
+          text="This chart displays the monthly supply shocks as a percentage of cumulative token releases."
+          pr="tooltip-position-class"
+        />
+      </div>
+      <div
+        id="supplyShockChart"
+        style={{
+          width: "100%",
+          height: dimensions.height, // Dynamic height
+        }}
+      ></div>
+    </div>
   );
 };
 

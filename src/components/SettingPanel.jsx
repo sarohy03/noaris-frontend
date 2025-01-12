@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import logo from "../assets/blacktokenomics.png";
+import Tooltip from "./tollTip";
 
 const SettingsPanel = ({
   isOpen,
@@ -67,11 +68,7 @@ const SettingsPanel = ({
         </style>
         <div className="flex flex-col justify-between">
           <div className="mt-[16px] pr-[3em] ml-5">
-            <img
-              src={logo}
-              alt="logo"
-              className="mb-4"
-            />
+            <img src={logo} alt="logo" className="mb-4" />
             {/* Text Content */}
             <div className="text-gray-300 text-sm">
               <p>
@@ -144,9 +141,13 @@ const SettingsPanel = ({
               <div className="p-4  bg-customBg rounded-xl">
                 {/* Selling Pressure Slider */}
                 <div className="relative mb-6">
-                  <label className="block mb-2 text-sm font-medium text-white">
-                    Selling Pressure (SP)
-                  </label>
+                  <div className="flex justify-between">
+                    <label className="block mb-2 text-sm font-medium text-white">
+                      Selling Pressure (SP)
+                    </label>
+                    <Tooltip text="Set the precentage of tokens that are expected to be sold." />
+                  </div>
+
                   <div className="relative group">
                     <input
                       type="range"
@@ -182,9 +183,14 @@ const SettingsPanel = ({
                 <div className="w-80% border-2 rounded-xl border-[#181D2D]"></div>
                 {/* Selling Pressure Source Dropdown */}
                 <div className="pt-6">
+                  <div className="flex justify-between">
+
                   <label className="block mb-2 text-sm font-medium text-white">
                     Selling Pressure Source
                   </label>
+                  <Tooltip text="Set the source of the selling pressure." />
+                  </div>
+
                   <select
                     value={sellingPressureSource}
                     onChange={(e) => {
@@ -324,7 +330,9 @@ const SettingsPanel = ({
                       min="0"
                       max="48"
                       value={month}
-                      onChange={(e) => setMonth(Number(e.target.value))}
+                      onChange={(e) =>
+                        setMonth(Number(e.target.value.toString()))
+                      }
                       className="w-full h-2 bg-slate-500 rounded-full appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500"
                       style={{
                         background: `linear-gradient(to right, #3b82f6 ${
