@@ -31,7 +31,7 @@ function App() {
         };
 
         const response = await axios.post(
-          "http://localhost:5001/plot-values",
+          "https://95c2-2400-adc5-460-c800-d85a-14a2-32b6-6d0b.ngrok-free.app/plot-values",
           payload
         );
         setApiData2(response.data);
@@ -61,10 +61,10 @@ function App() {
           sellingPressureSource: sellingPressureSource.toString(),
           selectedMonth: month.toString(),
         };
-        const response = await axios.post("http://localhost:5001/", payload);
+        const response = await axios.post("https://95c2-2400-adc5-460-c800-d85a-14a2-32b6-6d0b.ngrok-free.app/", payload);
 
         const response2 = await axios.post(
-          "http://localhost:5001/plot-values",
+          "https://95c2-2400-adc5-460-c800-d85a-14a2-32b6-6d0b.ngrok-free.app/plot-values",
           payload2
         );
         setApiData(response.data);
@@ -90,7 +90,7 @@ function App() {
           startingPrice: (launchFDV / 1000).toFixed(2),
         };
 
-        const response = await axios.post("http://localhost:5001/", payload);
+        const response = await axios.post("https://95c2-2400-adc5-460-c800-d85a-14a2-32b6-6d0b.ngrok-free.app/", payload);
         setApiData(response.data);
         // console.log("API Response:", response.data);
         // console.log("API Response:", response.data);
