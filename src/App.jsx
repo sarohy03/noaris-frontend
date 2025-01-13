@@ -749,8 +749,8 @@ function App() {
         };
 
         const response = await axios.post(
-          "https://95c2-2400-adc5-460-c800-d85a-14a2-32b6-6d0b.ngrok-free.app/plot-values"
-          // "http://localhost:5001/plot-values"
+          // "https://95c2-2400-adc5-460-c800-d85a-14a2-32b6-6d0b.ngrok-free.app/plot-values"
+          "http://localhost:5001/plot-values"
           ,
           payload
         );
@@ -782,14 +782,14 @@ function App() {
           selectedMonth: month.toString(),
         };
         const response = await axios.post(
-          "https://95c2-2400-adc5-460-c800-d85a-14a2-32b6-6d0b.ngrok-free.app/"
-          // "http://localhost:5001/"
+          // "https://95c2-2400-adc5-460-c800-d85a-14a2-32b6-6d0b.ngrok-free.app/"
+          "http://localhost:5001/"
          , 
          payload);
 
         const response2 = await axios.post(
-          "https://95c2-2400-adc5-460-c800-d85a-14a2-32b6-6d0b.ngrok-free.app/plot-values"
-          // "http://localhost:5001/plot-values"
+          // "https://95c2-2400-adc5-460-c800-d85a-14a2-32b6-6d0b.ngrok-free.app/plot-values"
+          "http://localhost:5001/plot-values"
           ,
           payload2
         );
@@ -823,8 +823,8 @@ function App() {
         };
 
         const response = await axios.post(
-          "https://95c2-2400-adc5-460-c800-d85a-14a2-32b6-6d0b.ngrok-free.app/"
-          // "http://localhost:5001/"
+          // "https://95c2-2400-adc5-460-c800-d85a-14a2-32b6-6d0b.ngrok-free.app/"
+          "http://localhost:5001/"
          , 
          payload);        setApiData(response.data);
         // console.log("API Response:", response.data);
