@@ -128,8 +128,8 @@ const SupplyShockChart = ({ className, selected, processedEmissionsData }) => {
       }}
     >
       <div className="flex items-center pt-5 pr-5">
-      <h1 className="text-2xl font-bold mr-3">
-          Monthly Supply Shocks
+      <h1 className="font-sansPro font-[600] text-[25px]  text-[#fffff] mr-3 ml-8">
+      Monthly Supply Shocks
         </h1>
         <Tooltip
           text="This chart displays the monthly supply shocks as a percentage of cumulative token releases."

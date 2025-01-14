@@ -69,14 +69,15 @@ const SettingsPanel = ({
           <div className="mt-[16px] pr-[3em] ml-5">
             <img src={logo} alt="logo" className="mb-4" />
             {/* Text Content */}
-            <div className="text-gray-300 text-sm">
-              <p>
+            <div className="text-[#A3A8B8]">
+              <p className="font-sansPro font-normal text-sm leading-[18.2px]">
                 Specialized Tokenomics firm for Web3 Projects, Launchpads, VCs &
                 Funds.
               </p>
+
               <div className="w-[105%] border-[1px] rounded-xl border-gray-600 my-4"></div>
 
-              <p className="mt-2">
+              <p className="font-sansPro font-normal text-sm leading-[18.2px] mt-2">
                 This supply shock and marketing visualizer is based on Uniswap
                 V2 liquidity logic.
               </p>
@@ -85,7 +86,9 @@ const SettingsPanel = ({
         </div>
 
         <div className="p-4">
-          <h1 className="text-2xl font-bold">Adjust Settings</h1>
+          <h1 className="font-sansPro font-[600] text-[25px]  text-[#fffff]">
+            Adjust Settings
+          </h1>
 
           {/* Selling Pressure Section */}
           <div className="mt-6 border-[1px] border-[#2E79C7] rounded-xl bg-customBg">
@@ -94,9 +97,9 @@ const SettingsPanel = ({
               className="bg-[#181D2D] border-[1px] border-[#2E79C7] flex items-center rounded-xl justify-between p-4 cursor-pointer"
               onClick={() => setIsExpanded(!isExpanded)}
             >
-<h2 className="text-sm font-semibold text-gray-300 font-sansPro">
-                Selling Pressure Assumptions
-              </h2>
+<p className="font-sansPro font-[600] text-[14px]  text-left">
+Selling Pressure Assumptions
+              </p>
               <button
                 className="text-gray-400 hover:text-gray-200"
                 title="Expand or collapse section"
@@ -141,7 +144,9 @@ const SettingsPanel = ({
                 {/* Selling Pressure Slider */}
                 <div className="relative mb-6">
                   <div className="flex justify-between">
-                    <label className="block mb-2 text-sm font-medium text-white">
+                  {/* <p className="  font-sansPro font-[600] text-[14px]  text-left  "> */}
+
+                    <label className="block mb-2 text-sm font-medium text-white font-sansPro font-[600] text-[14px]  text-left">
                       Selling Pressure (SP)
                     </label>
                     <Tooltip text="Set the precentage of tokens that are expected to be sold." />
@@ -183,11 +188,10 @@ const SettingsPanel = ({
                 {/* Selling Pressure Source Dropdown */}
                 <div className="pt-6">
                   <div className="flex justify-between">
-
-                  <label className="block mb-2 text-sm font-medium text-white">
-                    Selling Pressure Source
-                  </label>
-                  <Tooltip text="Set the source of the selling pressure." />
+                    <label className="block mb-2 text-sm font-medium text-white font-sansPro font-[600] text-[14px]  text-left">
+                      Selling Pressure Source
+                    </label>
+                    <Tooltip text="Set the source of the selling pressure." />
                   </div>
 
                   <select
@@ -201,9 +205,7 @@ const SettingsPanel = ({
                     <option value="Circulation">Circulation</option>
                     <option value="Liquidity">Unlocks</option>
                   </select>
-                  <p className="text-sm text-gray-400 mt-2">
-                    Set the source of the selling pressure.
-                  </p>
+             
                 </div>
               </div>
             )}
@@ -259,12 +261,13 @@ const SettingsPanel = ({
             {/* Collapsible Content */}
             {isExpand && (
               <div className="p-4">
-                <p className="text-gray-400 text-sm mb-4">
-                  These settings are available temporarily to demonstrate the
-                  dashboard's functions.
+                <p className="font-sansPro font-normal text-sm leading-[18.2px] mb-4 text-[#A3A8B8]">
+                  These settings are available temporary to demonstrate the
+                  functions of the dashboard, until the project launches and we
+                  can use real time data.
                 </p>
                 <div className="w-80% my-4 border-[1px] rounded-xl border-[#181D2D]"></div>
-                <p className="text-gray-400 text-sm mb-4">
+                <p className="font-sansPro font-normal text-sm leading-[18.2px]  text-[#A3A8B8] mb-4">
                   Select the expected FDV you are planing to have at launch.
                 </p>
                 {/* Launch FDV Slider */}
@@ -303,7 +306,7 @@ const SettingsPanel = ({
                     </div>
                   </div>
 
-                  <p className="text-sm text-gray-400 mt-2">
+                  <p className="font-sansPro font-normal text-sm leading-[18.2px]  text-[#A3A8B8] mt-2">
                     With an FDV of $
                     {launchFDV > 1000
                       ? (launchFDV / 1000).toFixed(2) + "B"
@@ -352,7 +355,7 @@ const SettingsPanel = ({
                   </div>
 
                   {/* Optional Text Below the Slider */}
-                  <p className="mt-2 text-sm text-gray-400">
+                  <p className="font-sansPro font-normal text-sm leading-[18.2px]  text-[#A3A8B8] mt-2">
                     You selected {month} months.
                   </p>
                 </div>

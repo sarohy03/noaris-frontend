@@ -15,7 +15,7 @@ const App = ({ progress }) => {
   }, [progress]);
 
   return (
-    <div style={{ width: 200, height: 200 }}>
+    <div style={{ width: 228, height: 220 }}>
       
       <CircularProgressbar
         value={animatedProgress}

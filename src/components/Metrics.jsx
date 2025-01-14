@@ -63,17 +63,19 @@ const Metrics = ({
     <div className={`border-2 flex flex-col p-8  rounded-3xl ${className}`}>
       {/* Container */}
       <div className="flex  items-center">
-        <h1 className="text-2xl font-bold mb-4 font-sans">{name}</h1>
+<h1 className="font-sansPro font-[600] text-[25px]  text-[#fffff] mb-4">
+          {name}
+          </h1>
       </div>
       <div className="flex flex-col space-y-6">
         {/* Top Section */}
         <div className="flex space-x-1 gap-3 flex-wrap ">
           {/* Supply Shock Card */}
-          <div className="p-10 mb-3 flex-1 bg-[#0E1117] p-6 rounded-xl flex flex-col items-center">
+          <div className="  flex-1 bg-[#0E1117] p-6 rounded-xl flex flex-col justify-center items-center">
             <div className="flex justify-between">
-              <h3 className="text-lg font-semibold text-white mb-4 mr-3">
+              <p className="font-sansPro font-[600] text-sm leading-[15.6px] text-[#A3A8B8] mb-6 mt-1 mr-3">
                 Supply Shock (%)
-              </h3>
+              </p>
               <Tooltip text="Indicates the percentage of newly released tokens relative to the circulating supply. A higher Supply Shock percentage suggests a larger influx of tokens into the market, which can increase price volatility." />
             </div>
             <Meter progress={supplyShock} />
@@ -83,10 +85,10 @@ const Metrics = ({
           <div className="flex flex-col gap-6 flex-1 ">
             {/* Total Unlock Value Card */}
             <div className="bg-[#0E1117] p-6 rounded-xl flex flex-col justify-between">
-              <div className="flex justify-between">
-                <h4 className="text-sm font-medium text-white mb-2">
+              <div className="flex justify-between pb-2">
+              <p className="font-sansPro text-sm font-[600]  pt-1 leading-[15.6px] text-[#A3A8B8] mb-2">
                   Total Unlock Value
-                </h4>
+                </p>
                 <Tooltip
                   text={
                     "Represents the overall dollar value of tokens scheduled to unlock this month."
@@ -120,10 +122,10 @@ const Metrics = ({
 
             {/* Unlock Value for Investors Card */}
             <div className="bg-[#0E1117] p-6 rounded-xl flex flex-col justify-between">
-              <div className="flex justify-between ">
-                <h4 className="text-sm font-medium text-white mb-2">
+              <div className="flex justify-between pb-2">
+              <p className="font-sansPro text-sm font-[600] leading-[15.6px] text-[#A3A8B8] pt-1">
                   Unlock Value for Investors
-                </h4>
+                </p>
                 <Tooltip
                   text={
                     "Specifically tracks the portion of the total unlocked tokens allocated to investors."
@@ -148,13 +150,10 @@ const Metrics = ({
                       : "bg-[#DB0D16]" // Light red background for negative %
                   }`}
                 >
-
-                <p
-                  className={`text-sm font-medium `}
-                  >
-                  {`${percentageDifferences.investorUnlockDiff}%`}
-                </p>
-                  </div>
+                  <p className={`text-sm font-medium `}>
+                    {`${percentageDifferences.investorUnlockDiff}%`}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -162,8 +161,8 @@ const Metrics = ({
 
         {/* Bottom Section */}
         <div className="bg-[#0E1117] p-6 rounded-xl flex flex-col">
-          <h4 className="text-sm font-medium text-white  flex justify-between items-center">
-            Worst Case Scenario
+        <p className="font-sansPro text-sm font-[600] leading-[15.6px] text-[#A3A8B8] flex justify-between items-center">
+        Worst Case Scenario
             <button onClick={toggleContentVisibility} className="p-2">
               {isContentVisible ? (
                 <EyeIcon className="h-6 w-6 text-white" /> // Visible state icon
@@ -171,7 +170,7 @@ const Metrics = ({
                 <EyeSlashIcon className="h-6 w-6 text-white" /> // Hidden state icon
               )}
             </button>
-          </h4>
+          </p>
 
           {isContentVisible && (
             <>
@@ -186,7 +185,8 @@ const Metrics = ({
               </div>
               <div className="flex flex-row justify-between items-center">
                 <div className="flex justify-between">
-                  <p className="text-gray-400 text-sm mb-4 mr-2 pt-1">
+                  {/* <p className="text-gray-400 text-sm mb-4 mr-2 pt-1"> */}
+                  <p className="font-sansPro text-sm text-[#A3A8B8] mb-4 mr-2 pt-1">
                     Total Maximum Unlock
                   </p>
                   <Tooltip
@@ -201,7 +201,7 @@ const Metrics = ({
                       "The absolute highest dollar value of tokens that investors can sell this month."
                     }
                   />
-                  <p className="text-gray-400 text-sm mb-4 ml-2 pt-1 font-sans ">
+                  <p className="font-sansPro text-sm text-[#A3A8B8] mb-4 ml-2 pt-1">
                     Maximum for Investors
                   </p>
                 </div>
