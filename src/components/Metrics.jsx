@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
+
 import Meter from "./meter";
 import LineGraph from "./lineGraph";
 import Tooltip from "./tollTip";
@@ -14,6 +17,11 @@ const Metrics = ({
   ci,
   pi,
 }) => {
+  const [isContentVisible, setIsContentVisible] = useState(true);
+
+  const toggleContentVisibility = () => {
+    setIsContentVisible(!isContentVisible);
+  };
   // Helper function to format numbers with commas
   const formatNumber = (number) => {
     if (typeof number === "number") {
@@ -49,31 +57,24 @@ const Metrics = ({
     const investorUnlockDiff = calculatePercentageDifference(ci, pi);
     // console.log("Total Unlock Difference:", totalUnlockDiff);
     setPercentageDifferences({ totalUnlockDiff, investorUnlockDiff });
-  
-
   }, [cu, pu, ci, pi]);
-  
 
   return (
     <div className={`border-2 flex flex-col p-8  rounded-3xl ${className}`}>
       {/* Container */}
       <div className="flex  items-center">
-        <h1 className="text-2xl font-bold mb-4">{
-        name}</h1>
+        <h1 className="text-2xl font-bold mb-4 font-sans">{name}</h1>
       </div>
       <div className="flex flex-col space-y-6">
         {/* Top Section */}
         <div className="flex space-x-1 gap-3 flex-wrap ">
           {/* Supply Shock Card */}
           <div className="p-10 mb-3 flex-1 bg-[#0E1117] p-6 rounded-xl flex flex-col items-center">
-            <div className="flex justify-between"> 
-
-            <h3 className="text-lg font-semibold text-white mb-4 mr-3">
-              Supply Shock (%)
-            </h3>
-            <Tooltip 
-              text="Indicates the percentage of newly released tokens relative to the circulating supply. A higher Supply Shock percentage suggests a larger influx of tokens into the market, which can increase price volatility."
-            />
+            <div className="flex justify-between">
+              <h3 className="text-lg font-semibold text-white mb-4 mr-3">
+                Supply Shock (%)
+              </h3>
+              <Tooltip text="Indicates the percentage of newly released tokens relative to the circulating supply. A higher Supply Shock percentage suggests a larger influx of tokens into the market, which can increase price volatility." />
             </div>
             <Meter progress={supplyShock} />
           </div>
@@ -83,12 +84,14 @@ const Metrics = ({
             {/* Total Unlock Value Card */}
             <div className="bg-[#0E1117] p-6 rounded-xl flex flex-col justify-between">
               <div className="flex justify-between">
-
-
-              <h4 className="text-sm font-medium text-white mb-2">
-                Total Unlock Value
-              </h4>
-              <Tooltip text={"Represents the overall dollar value of tokens scheduled to unlock this month."}/>
+                <h4 className="text-sm font-medium text-white mb-2">
+                  Total Unlock Value
+                </h4>
+                <Tooltip
+                  text={
+                    "Represents the overall dollar value of tokens scheduled to unlock this month."
+                  }
+                />
               </div>
               <div>
                 <LineGraph
@@ -101,25 +104,31 @@ const Metrics = ({
                 <p className="text-xl font-bold text-white">
                   ${formatNumber(cu)}
                 </p>
-                <p
-                  className={`text-sm font-medium mt-1 ${
+                <div
+                  className={`p-2 rounded-3xl ${
                     percentageDifferences.totalUnlockDiff >= 0
-                      ? "text-green-500"
-                      : "text-red-500"
+                      ? "bg-[#6A94F7]" // Light green background for positive %
+                      : "bg-[#DB0D16]" // Light red background for negative %
                   }`}
                 >
-                  {`${percentageDifferences.totalUnlockDiff}%`}
-                </p>
+                  <p className={`text-sm font-medium mt-1}`}>
+                    {`${percentageDifferences.totalUnlockDiff}%`}
+                  </p>
+                </div>
               </div>
             </div>
 
             {/* Unlock Value for Investors Card */}
             <div className="bg-[#0E1117] p-6 rounded-xl flex flex-col justify-between">
-              <div className="flex justify-between " >
-              <h4 className="text-sm font-medium text-white mb-2">
-                Unlock Value for Investors
-              </h4>
-              <Tooltip text={"Specifically tracks the portion of the total unlocked tokens allocated to investors."} />
+              <div className="flex justify-between ">
+                <h4 className="text-sm font-medium text-white mb-2">
+                  Unlock Value for Investors
+                </h4>
+                <Tooltip
+                  text={
+                    "Specifically tracks the portion of the total unlocked tokens allocated to investors."
+                  }
+                />
               </div>
               <div>
                 <LineGraph
@@ -132,48 +141,73 @@ const Metrics = ({
                 <p className="text-xl font-bold text-white">
                   ${formatNumber(data.Value_for_Investors_SP)}
                 </p>
-                <p
-                  className={`text-sm font-medium mt-1 ${
-                    percentageDifferences.investorUnlockDiff >= 0
-                      ? "text-green-500"
-                      : "text-red-500"
+                <div
+                  className={`flex justify-center items-center p-2 rounded-3xl ${
+                    percentageDifferences.totalUnlockDiff >= 0
+                      ? "bg-[#6A94F7]" // Light green background for positive %
+                      : "bg-[#DB0D16]" // Light red background for negative %
                   }`}
                 >
+
+                <p
+                  className={`text-sm font-medium `}
+                  >
                   {`${percentageDifferences.investorUnlockDiff}%`}
                 </p>
+                  </div>
               </div>
             </div>
           </div>
         </div>
 
         {/* Bottom Section */}
-        <div className="bg-[#0E1117] p-6 rounded-xl flex flex-col ">
-          <h4 className="text-sm font-medium text-white mb-2">
+        <div className="bg-[#0E1117] p-6 rounded-xl flex flex-col">
+          <h4 className="text-sm font-medium text-white mb-2 flex justify-between items-center">
             Worst Case Scenario
+            <button onClick={toggleContentVisibility} className="p-2">
+              {isContentVisible ? (
+                <EyeIcon className="h-6 w-6 text-white" /> // Visible state icon
+              ) : (
+                <EyeSlashIcon className="h-6 w-6 text-white" /> // Hidden state icon
+              )}
+            </button>
           </h4>
 
-          <div className="border-2 w-full border-[#26282E] mb-3"></div>
-          <div className="flex justify-between items-center flex-row">
-            <p className="text-xl font-bold text-white">
-              ${formatNumber(data.unlock_value_max)}
-            </p>
-            <p className="text-xl font-bold text-white">
-              ${formatNumber(data.Value_for_Investors_Max)}
-            </p>
-          </div>
-          <div className="flex flex-row justify-between items-center">
-            <div className="flex justify-between">
-
-            <p className="text-gray-400 text-sm mb-4 mr-2 pt-1">Total Maximum Unlock</p>
-            <Tooltip text={"The absolute highest dollar value of tokens that could be sold this month (e.g., if all unlocked tokens this month are sold.)"}/>
-            </div>
-            <div className="flex justify-between">
-
-            <Tooltip text={"The absolute highest dollar value of tokens that investors can sell this month."}/>
-            <p className="text-gray-400 text-sm mb-4 ml-2 pt-1">Maximum for Investors</p>
-
-            </div>
-          </div>
+          {isContentVisible && (
+            <>
+              <div className="border-[1px] w-full border-[#26282E] mb-3"></div>
+              <div className="flex justify-between items-center flex-row">
+                <p className="text-xl font-bold text-white">
+                  ${formatNumber(data.unlock_value_max)}
+                </p>
+                <p className="text-xl font-bold text-white">
+                  ${formatNumber(data.Value_for_Investors_Max)}
+                </p>
+              </div>
+              <div className="flex flex-row justify-between items-center">
+                <div className="flex justify-between">
+                  <p className="text-gray-400 text-sm mb-4 mr-2 pt-1">
+                    Total Maximum Unlock
+                  </p>
+                  <Tooltip
+                    text={
+                      "The absolute highest dollar value of tokens that could be sold this month (e.g., if all unlocked tokens this month are sold.)"
+                    }
+                  />
+                </div>
+                <div className="flex justify-between">
+                  <Tooltip
+                    text={
+                      "The absolute highest dollar value of tokens that investors can sell this month."
+                    }
+                  />
+                  <p className="text-gray-400 text-sm mb-4 ml-2 pt-1 font-sans ">
+                    Maximum for Investors
+                  </p>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

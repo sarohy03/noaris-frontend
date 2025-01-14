@@ -25,7 +25,6 @@ const SettingsPanel = ({
         }`}
         style={{
           overflowY: "auto", // Enables vertical scrolling
-          overflowX: "visible", // Disables horizontal scrolling
           scrollbarWidth: "none", // Hides scrollbar in Firefox
           msOverflowStyle: "none", // Hides scrollbar in IE/Edge
         }}

@@ -911,7 +911,7 @@ function App() {
                   supplyShock={apiData2.supplyShocks.selected}
                   className="flex-1 border-[#6F8EEC] bg-[#26304C] "
                   data={apiData.selectedMonth}
-                  name="CurrentMonth"
+                  name="Current Month"
                   line={apiData2.plotData}
                   selected={month}
                   cu={apiData.selectedMonth.unlock_value_sp}
@@ -923,7 +923,7 @@ function App() {
                   supplyShock={apiData2.supplyShocks.future}
                   className="flex-1 bg-[#181D2D] border-[#293353]"
                   data={apiData.futureMonth}
-                  name="UpcomingMonth"
+                  name="Upcoming Month"
                   line={apiData2.plotData}
                   selected={month}
                   // prev={apiData.selectedMonth}
