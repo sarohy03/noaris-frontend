@@ -94,7 +94,7 @@ const SettingsPanel = ({
               className="bg-[#181D2D] border-[1px] border-[#2E79C7] flex items-center rounded-xl justify-between p-4 cursor-pointer"
               onClick={() => setIsExpanded(!isExpanded)}
             >
-              <h2 className="text-sm font-semibold text-gray-300">
+<h2 className="text-sm font-semibold text-gray-300 font-sansPro">
                 Selling Pressure Assumptions
               </h2>
               <button
@@ -179,7 +179,7 @@ const SettingsPanel = ({
                     <span className="text-gray-400 text-sm">100%</span>
                   </div>
                 </div>
-                <div className="w-80% border-2 rounded-xl border-[#181D2D]"></div>
+                <div className="w-80% border-[1px] rounded-xl border-[#181D2D]"></div>
                 {/* Selling Pressure Source Dropdown */}
                 <div className="pt-6">
                   <div className="flex justify-between">
@@ -263,7 +263,7 @@ const SettingsPanel = ({
                   These settings are available temporarily to demonstrate the
                   dashboard's functions.
                 </p>
-                <div className="w-80% my-4 border-2 rounded-xl border-[#181D2D]"></div>
+                <div className="w-80% my-4 border-[1px] rounded-xl border-[#181D2D]"></div>
                 <p className="text-gray-400 text-sm mb-4">
                   Select the expected FDV you are planing to have at launch.
                 </p>
@@ -312,7 +312,7 @@ const SettingsPanel = ({
                     {(launchFDV / 1000).toFixed(2)}.
                   </p>
                 </div>
-                <div className="w-80% my-4 border-2 rounded-xl border-[#181D2D]"></div>
+                <div className="w-80% my-4 border-[1px] rounded-xl border-[#181D2D]"></div>
 
                 {/* Select a Month Slider */}
 

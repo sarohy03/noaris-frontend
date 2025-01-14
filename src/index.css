@@ -1,3 +1,87 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'sansPro';
+  src: url('./assets/fonts/SourceSansPro-Black.otf') format('otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'sansProBlack';
+  src: url('./assets/fonts/SourceSansPro-BlackIt.otf') format('otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'sansProBold';
+  src: url('./assets/fonts/SourceSansPro-Bold.otf') format('otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'sansProBoldIT';
+  src: url('./assets/fonts/SourceSansPro-BoldIt.otf') format('otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'sansProExtraLight';
+  src: url('./assets/fonts/SourceSansPro-ExtraLight.otf') format('otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'sansProExtraLightIt';
+  src: url('./assets/fonts/SourceSansPro-ExtraLightIt.otf') format('otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'sansProIt';
+  src: url('./assets/fonts/SourceSansPro-It.otf') format('otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'sansProLight';
+  src: url('./assets/fonts/SourceSansPro-Light.otf') format('otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'sansProLightIT';
+  src: url('./assets/fonts/SourceSansPro-LightIt.otf') format('otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'sansProRegular';
+  src: url('./assets/fonts/SourceSansPro-Regular.otf') format('otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'sansProSemiBold';
+  src: url('./assets/fonts/SourceSansPro-Semibold.otf') format('otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'sansProSemiBoldIt';
+  src: url('./assets/fonts/SourceSansPro-SemiboldIt.otf') format('otf');
+  font-weight: normal;
+  font-style: normal;
+}

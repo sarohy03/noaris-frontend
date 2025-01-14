@@ -71,6 +71,8 @@ const LineGraph = ({ className, selected, processedEmissionsData,name }) => {
           width: 3, // Line thickness
           color: "#5C81D5", // Line color
         },
+        fill: "tozeroy", // Fill the area under the curve to the x-axis
+        fillcolor: "rgba(92, 129, 213, 0.2)", // Light blue shade below the line
         marker: {
           size: markerSizes, // Size of markers
           color: markerColors, // Marker colors
@@ -79,6 +81,7 @@ const LineGraph = ({ className, selected, processedEmissionsData,name }) => {
           "<b>Month: %{x}</b><br>Supply Shock: %{y:.2f}%<extra></extra>", // Display hover info
       },
     ];
+    
 
     // Plotly layout
     const layout = {
@@ -107,7 +110,6 @@ const LineGraph = ({ className, selected, processedEmissionsData,name }) => {
       style={{
         width: "100%",
         height: dimensions.height,
-        borderRadius: "1.5rem",
         overflow: "hidden",
       }}
     ></div>

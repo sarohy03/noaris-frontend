@@ -100,7 +100,7 @@ const Metrics = ({
                   name={`TotalUnlockValue${name}`}
                 />
               </div>
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center mt-2">
                 <p className="text-xl font-bold text-white">
                   ${formatNumber(cu)}
                 </p>
@@ -137,7 +137,7 @@ const Metrics = ({
                   name={`UnlockValueforInvestors${name}`}
                 />
               </div>
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center mt-2">
                 <p className="text-xl font-bold text-white">
                   ${formatNumber(data.Value_for_Investors_SP)}
                 </p>
@@ -162,7 +162,7 @@ const Metrics = ({
 
         {/* Bottom Section */}
         <div className="bg-[#0E1117] p-6 rounded-xl flex flex-col">
-          <h4 className="text-sm font-medium text-white mb-2 flex justify-between items-center">
+          <h4 className="text-sm font-medium text-white  flex justify-between items-center">
             Worst Case Scenario
             <button onClick={toggleContentVisibility} className="p-2">
               {isContentVisible ? (
