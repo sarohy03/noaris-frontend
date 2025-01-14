@@ -217,7 +217,7 @@ Selling Pressure Assumptions
               className="bg-[#181D2D] border-[1px] border-[#2E79C7] rounded-xl flex items-center justify-between p-4 cursor-pointer"
               onClick={() => setIsExpand(!isExpand)}
             >
-              <h2 className="text-sm font-semibold text-gray-300">
+              <h2 className="font-sansPro font-[600] text-[14px]  text-left">
                 Temporary Settings
               </h2>
               <button
