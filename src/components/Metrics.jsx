@@ -160,8 +160,8 @@ const Metrics = ({
         </div>
 
         {/* Bottom Section */}
-        <div className="bg-[#0E1117] p-6 rounded-xl flex flex-col">
-        <p className="font-sansPro text-sm font-[600] leading-[15.6px] text-[#A3A8B8] flex justify-between items-center">
+        <div className="bg-[#0E1117]  rounded-xl flex flex-col">
+        <p className="font-sansPro px-3 pt-2 text-sm font-[600] leading-[15.6px] text-[#A3A8B8] flex justify-between items-center">
         Worst Case Scenario
             <button onClick={toggleContentVisibility} className="p-2">
               {isContentVisible ? (
@@ -173,7 +173,7 @@ const Metrics = ({
           </p>
 
           {isContentVisible && (
-            <>
+            <div className="px-3 pb-2">
               <div className="border-[1px] w-full border-[#26282E] mb-3"></div>
               <div className="flex justify-between items-center flex-row">
                 <p className="text-xl font-bold text-white">
@@ -206,7 +206,7 @@ const Metrics = ({
                   </p>
                 </div>
               </div>
-            </>
+            </div>
           )}
         </div>
       </div>
